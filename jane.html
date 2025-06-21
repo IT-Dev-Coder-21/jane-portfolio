@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jane Otaniel - Portfolio</title>
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #e6e0f8 0%, #f5f3fa 100%);
+      --bg-pattern: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="2" fill="%237d6baf" fill-opacity="0.1"/></svg>');
+      --bg-color: #f5f3fa;
+      --text-primary: #4b417d;
+      --text-secondary: #6c5fa3;
+      --accent-color: #8c7ae6;
+      --accent-hover: #6b5fa3;
+      --border-color: #c1bbec;
+      --nav-bg: #7d6bb0;
+      --nav-btn-color: #edeaf9;
+      --nav-btn-hover: #a498e5;
+      --card-bg: #ffffffcc;
+      --card-shadow: rgba(124, 114, 175, 0.15);
+      --highlight-bg: #e1ddf8;
+      --footer-color: #6b5fa3;
+    }
+
+    .dark-theme {
+      --bg-gradient: linear-gradient(135deg, #1e1c2c 0%, #29273f 100%);
+      --bg-pattern: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><circle cx="20" cy="20" r="2" fill="%236b5fa3" fill-opacity="0.05"/></svg>');
+      --bg-color: #29273f;
+      --text-primary: #c6c1ff;
+      --text-secondary: #a498e5;
+      --accent-color: #8c7ae6;
+      --accent-hover: #6557a1;
+      --border-color: #4e4a70;
+      --nav-bg: #3a3754;
+      --nav-btn-color: #c6c1ff;
+      --nav-btn-hover: #a498e5;
+      --card-bg: #38364f;
+      --card-shadow: rgba(140, 122, 230, 0.3);
+      --highlight-bg: #474561;
+      --footer-color: #a498e5;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    * {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-gradient);
+      background-image: var(--bg-pattern);
+      background-repeat: repeat;
+      color: var(--text-primary);
+      transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+      background-color: var(--bg-color);
+      border-radius: 12px;
+      box-shadow: 0 8px 25px var(--card-shadow);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: var(--nav-bg);
+      padding: 10px 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav button {
+      background: none;
+      color: var(--nav-btn-color);
+      border: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav button:hover {
+      color: var(--nav-btn-hover);
+    }
+
+    header {
+      text-align: center;
+      padding: 30px 0 10px;
+      animation: fadeIn 1.5s ease-in;
+    }
+
+    h1 {
+      font-size: 2.7rem;
+      color: var(--accent-color);
+      margin: 10px 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--text-secondary);
+      margin-top: 40px;
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 8px;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+    }
+
+    .profile-pic {
+      display: block;
+      margin: 20px auto;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--accent-color);
+      box-shadow: 0 4px 15px rgba(140, 122, 230, 0.4);
+      background-color: var(--card-bg);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 25px rgba(140, 122, 230, 0.7);
+    }
+
+    .links a {
+      text-decoration: none;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin: 0 10px;
+    }
+
+    .highlight {
+      background-color: var(--highlight-bg);
+      border-left: 6px solid var(--accent-color);
+      padding: 18px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px var(--card-shadow);
+      font-weight: 500;
+      animation: slideIn 1s ease-out;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .project, .skill, .contact {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 20px var(--card-shadow);
+    }
+
+    .project:hover, .skill:hover, .contact:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 10px 30px var(--card-shadow);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    input, textarea {
+      padding: 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 1rem;
+      background-color: var(--card-bg);
+      color: var(--text-primary);
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      background-color: var(--highlight-bg);
+    }
+
+    button[type="submit"] {
+      background-color: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(140, 122, 230, 0.5);
+      max-width: 120px;
+      align-self: flex-start;
+    }
+
+    button[type="submit"]:hover {
+      background-color: var(--accent-hover);
+      box-shadow: 0 6px 18px rgba(107, 95, 163, 0.7);
+    }
+
+    footer {
+      text-align: center;
+      margin: 50px 0 20px;
+      font-size: 0.9rem;
+      color: var(--footer-color);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      nav button { font-size: 0.9rem; margin: 0 8px; }
+      input, textarea, button[type="submit"] {
+        font-size: 0.95rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <button onclick="document.getElementById('about').scrollIntoView()">About</button>
+    <button onclick="document.getElementById('projects').scrollIntoView()">Projects</button>
+    <button onclick="document.getElementById('skills').scrollIntoView()">Skills</button>
+    <button onclick="document.getElementById('contact').scrollIntoView()">Contact</button>
+    <button id="theme-toggle" onclick="toggleTheme()">🌙 Dark Mode</button>
+  </nav>
+
+  <div class="container">
+    <header>
+      <h1>Jane Otaniel</h1>
+      <h3>Information Technology Student at MUBAS</h3>
+      <img src="https://media.licdn.com/dms/image/v2/D4D03AQHGWpUjqP1snQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1723051736495?e=1755129600&v=beta&t=4ooVAcK_cE0LBupoUeSIvm3XYL2bxPF3_i50AVvlXAA" alt="Jane Otaniel" class="profile-pic">
+      <div class="links">
+        <a href="https://www.linkedin.com/in/jane-otaniel-137a52306" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/Jane-n21" target="_blank">GitHub</a>
+      </div>
+    </header>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <p class="highlight">
+        Hello! I'm Jane, currently pursuing a degree in Information Technology at Malawi University of Business and Applied Sciences (MUBAS).
+        I enjoy building responsive websites, configuring networks, and learning new tech tools. I'm passionate about technology and innovation,
+        and I love solving real-world problems through code and design.
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="project">
+        <h3>Online Management Shopping System (C++)</h3>
+        <p>A console-based app allowing users to browse, add to cart, and order products. Admins can manage inventory via a `.dat` file system.</p>
+      </div>
+      <div class="project">
+        <h3>MUBAS Network Design (Cisco Packet Tracer)</h3>
+        <p>Designed a multi-campus network using VLANs, DHCP, and routing protocols, including a full IEEE report and simulation.</p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skill">
+        <ul>
+          <li>Web Development (HTML, CSS, JavaScript)</li>
+          <li>Networking (Cisco Packet Tracer, VLANs, Subnetting)</li>
+          <li>Programming (C++, Java, Kotlin)</li>
+          <li>Version Control (Git, GitHub)</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <div class="contact">
+        <p>Email: otanieljane@gmail.com</p>
+        <p>Phone: +265 885 177 053</p>
+        <p>Location: Blantyre, Malawi</p>
+        <form action="https://formspree.io/f/meoklpen" method="POST">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input type="email" name="email" placeholder="Your Email" required />
+          <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      &copy; 2025 Jane Otaniel. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      const toggleBtn = document.getElementById('theme-toggle');
+      body.classList.toggle('dark-theme');
+      const isDark = body.classList.contains('dark-theme');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('theme');
+      const body = document.body;
+      const toggleBtn = document.getElementById('theme-toggle');
+      if (savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+        toggleBtn.textContent = '☀️ Light Mode';
+      }
+    });
+  </script>
+</body>
+</html>
